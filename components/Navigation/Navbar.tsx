@@ -6,12 +6,12 @@ import {
   IconCalendarStats,
   IconDeviceDesktopAnalytics,
   IconFingerprint,
-  IconGauge,
+  IconGalaxy,
   IconHome2,
   IconLogout,
   IconUser,
 } from '@tabler/icons-react';
-import { Anchor, Center, Group, Tooltip, UnstyledButton } from '@mantine/core';
+import { Center, Group, Tooltip, UnstyledButton } from '@mantine/core';
 import classes from './Navbar.module.css';
 
 interface NavbarLinkProps {
@@ -36,15 +36,16 @@ function NavbarLink({ icon: Icon, label, active, onClick, url }: NavbarLinkProps
 
 const mockdata = [
   { icon: IconHome2, label: 'Home', url: '/' },
-  { icon: IconGauge, label: 'Account', url: '/Account' },
+  // If not logged in, go to signup page, need logic for login status
+  { icon: IconUser, label: 'Account', url: '/Account' },
   { icon: IconDeviceDesktopAnalytics, label: 'Our Course', url: '/OurCourse' },
   { icon: IconCalendarStats, label: 'Laws by State', url: '/LawsByState' },
-  { icon: IconUser, label: 'About Us', url: '/AboutUs' },
+  { icon: IconGalaxy, label: 'About Us', url: '/AboutUs' },
   { icon: IconFingerprint, label: 'Contact Us', url: '/ContactUs' },
 ];
 
 const Navbar = () => {
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(0);
 
   const links = mockdata.map((link, index) => (
     <NavbarLink
@@ -69,6 +70,7 @@ const Navbar = () => {
       </div>
 
       <Group justify="center" gap={0}>
+        {/* Will render conditionally based on user logged in state */}
         <NavbarLink icon={IconLogout} label="Logout" />
       </Group>
     </nav>
