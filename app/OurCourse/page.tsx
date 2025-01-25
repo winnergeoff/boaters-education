@@ -1,18 +1,26 @@
-import { Text, Title } from '@mantine/core';
+// app/page.tsx
+'use client';  // Enable client-side rendering for React hooks
 
-const OurCourse = () => {
+import { Button, Container, Title, Text } from '@mantine/core';
+import { useRouter } from 'next/navigation';
+
+export default function OurCourse() {
+  const router = useRouter();
+
+  const startCourse = () => {
+    router.push('/quiz/1'); // Navigate to the first question
+  };
+
   return (
-    <>
-      <Title ta="center" mt={100}>
-        <Text inherit variant="gradient" component="span" gradient={{ from: 'pink', to: 'yellow' }}>
-          Our Course Page
-        </Text>
-      </Title>
-      <Text c="dimmed" ta="center" size="lg" maw={580} mx="auto" mt="xl">
-        Our Course Page
+    <Container style={{ textAlign: 'center', marginTop: '50px' }}>
+      {/* Add more text and cards describing the course costs and what it entails */}
+      <Title order={1}>Welcome to the Course!</Title>
+      <Text size="lg" style={{ marginBottom: '20px' }}>
+        Begin course here!
       </Text>
-    </>
+      <Button onClick={startCourse} size="lg">
+        Start Course
+      </Button>
+    </Container>
   );
 }
-
-export default OurCourse;
